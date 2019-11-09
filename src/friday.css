@@ -1,0 +1,67 @@
+body{
+    font-family:orbitron;
+}
+h1{
+    
+    text-align:center;
+    color:#22a7f0;
+
+}
+.view{
+
+
+}
+input{
+    width:80%;
+    border-color:black;
+    padding:10px;
+    margin-left:10%;
+    font-family:orbitron;
+
+}
+::placeholder{
+    color:black;
+}
+table {
+    margin-left:10%;
+        border-collapse: collapse;
+        margin: 120px;
+        /* visibility:hidden; */
+        border:none;
+    }
+     table, td, th {
+        
+        padding: 10px;
+        width:80%;
+        text-align:left;
+    }
+    .voice{
+        
+        font-family:orbitron;
+        font-size:18px;
+        background-color:black;
+        color:white;
+        border-color:black;
+        border-radius:5px;
+        
+        
+    }
+    .viewbutton{
+        text-align:center;
+    }
+    .send{
+         font-family:orbitron;
+        font-size:18px;
+        background-color:black;
+        color:white;
+        border-color:black;
+        border-radius:5px;
+    }
+    .voice:hover{
+        color:black;
+        background-color:white;
+    }
+    .send:hover{
+        color:black;
+        background-color:white;
+    }
