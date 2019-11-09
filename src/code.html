@@ -1,0 +1,109 @@
+<link rel="stylesheet" href="friday.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h1 > F.R.I.D.A.Y </h1>
+<table id="myTable"><tbody id="myTable1">
+<tr ><th></th><th></th></tr>
+<tr><td ></td><td id="3">Hey FRIDAY!</td></tr><tr><td id="4">Hello Boss! Welcome back.</td></tr>
+<!-- <tr><td></td><td>What's up?</td></tr><tr><td>You have a date with Sindhu today! </td></tr>
+<tr><td></td><td>Do you think she falls for me?</td></tr><tr><td>If I were her, I would definitely fall for you!</td></tr> -->
+</tbody>
+</table>
+<div class="view">
+    <input type="text" placeholder="Enter your message" id="1"><br>
+    <br>
+    <div class="viewbutton">
+        <button id = "vo" class = "voice" onclick="two()">Voice              <i style="font-size:20px" class="fa">&#xf130;</i></button>
+        <button id="text" class="send"  onclick="getUserMessage(this)" >Send</button>
+    </div>
+    <p id="chat"></p>
+</div>
+
+
+
+
+
+
+
+<script>
+    function two(){
+    window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+    let finalTranscript = '';
+    let recognition = new window.SpeechRecognition();
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 10;
+    recognition.continuous = true;
+    recognition.onresult = (event) => {
+      let interimTranscript = '';
+      for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+        let transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript;
+        } else {
+          interimTranscript += transcript;
+        }
+      }
+      console.log(document.getElementById(1)).innerHTML=finalTranscript;
+      console.log(finalTranscript);
+    }
+    recognition.start();
+    }
+    function getUserMessage(){
+        var input = document.getElementById("1");
+
+       
+    
+    
+
+    // recognition.start();
+    //     if transcript{
+    //         userMessage=transcript
+    //     }
+    //     else{
+        var userMessage = document.getElementById(1).value;
+        
+        document.getElementById("3").innerHTML=userMessage; 
+        // let userMessage2 = document.getElementById(2).value;
+        pywebview.api.sendAIML(userMessage).then(showOutput);
+        pywebview.api.intents(userMessage);
+        
+        
+    }
+    // function sumInPython(){
+    //     let n1 = parseInt(prompt("Enter an integer"));
+    //     let n2 = parseInt(prompt("Enter an integer"));
+    
+    //     // pass this object as arguments for simplicity
+    //     let args = {
+    //         a : n1,
+    //         b : n2
+    //     }
+
+    //     // execute python function to perform backend operation
+    //     // format : pywebview.api.<function-name>(<arguments-object>).then(return-value-handling-function);
+    //     pywebview.api.sum(args).then(showOutput);
+        
+    // }
+
+    function showOutput(output,userMessage){
+        // this function will handle the return value
+        
+        document.getElementById("4").innerHTML=output;
+        var table = document.getElementById("myTable");
+        // table.stle.visibility = "visible";
+        var tableRef = document.getElementById('myTable1').getElementsByTagName('tbody')[1];
+        var newRow   = tableRef.insertRow(tableRef.rows.length);
+        newRow.innerHTML = userMessage;
+
+        // var row = table.insertRow(0);
+        // var cell1 = row.insertCell(0);
+        // var cell2 = row.insertCell(1);
+        // cell1.innerHTML = output;
+        // cell2.innerHTML = userMessage;
+        return output
+      
+    }
+
+    function sayHello(){
+        alert("hello");
+    }
+</script>
